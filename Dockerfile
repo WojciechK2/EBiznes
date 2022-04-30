@@ -8,7 +8,12 @@ RUN /bin/bash -c "source /root/.sdkman/bin/sdkman-init.sh; sdk version; sdk inst
 
 EXPOSE 8000
 
-WORKDIR /home/
+RUN useradd -ms /bin/bash wklasa
+RUN adduser wklasa sudo
+
+USER wklasa
+WORKDIR /home/wklasa
 RUN mkdir shared
 
-VOLUME /home/shared /tmp
+VOLUME /home/wklasa/shared
+
